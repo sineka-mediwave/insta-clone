@@ -59,3 +59,19 @@ instaclone-# ;
 (20 rows)
 
 ```
+
+- List posts that are liked by colin
+
+```
+instaclone=# select posts.postcontent as likedByColin from posts left join likes on posts.postid = likes.postid where likes.userid = 2;
+ likedbycolin
+--------------
+ Tips
+ Cartoon
+ Book
+ Award
+ Comedy
+ LandSale
+(6 rows)
+
+```
