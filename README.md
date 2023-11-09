@@ -16,7 +16,7 @@
 
 ## task
 
-- list all users
+- list all users `SELECT * from users;`
 
 ```
 instaclone=# SELECT * from users;
@@ -29,7 +29,7 @@ instaclone=# SELECT * from users;
 
 ```
 
-- list all posts
+- list all posts `SELECT * from posts`
 
 ```
 instaclone=# SELECT * from posts
@@ -60,7 +60,7 @@ instaclone-# ;
 
 ```
 
-- List posts that are liked by colin
+- List posts that are liked by colin `select posts.postcontent as likedByColin from posts left join likes on posts.postid = likes.postid where likes.userid = 2;`
 
 ```
 instaclone=# select posts.postcontent as likedByColin from posts left join likes on posts.postid = likes.postid where likes.userid = 2;
@@ -75,3 +75,18 @@ instaclone=# select posts.postcontent as likedByColin from posts left join likes
 (6 rows)
 
 ```
+
+- As a Glenda, she wants to know who are all liked her post book. `select users.username as liked_glenda_post from users inner join likes on users.userid=likes.userid where likes.postid=13;`
+
+```
+instaclone=# select users.username as liked_glenda_post from users inner join likes on users.userid=likes.userid where likes.postid=13;
+ liked_glenda_post
+-------------------
+ Edina
+ Colin
+ Glenda
+ Paula
+(4 rows)
+```
+
+- Edina needs to know the post count which are liked by others.
