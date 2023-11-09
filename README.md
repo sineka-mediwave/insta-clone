@@ -157,21 +157,75 @@ WHERE posts.postcontent ILIKE '%sal%';
 - 9. Get the count of colin posts
 
 ```
-instaclone=# SELECT COUNT(posts.postid) FROM posts
+instaclone=# SELECT COUNT(posts.postid) AS no_of_colin_post FROM posts
 WHERE  posts.userid=2;
- count
--------
-     5
+ no_of_colin_post
+------------------
+                5
 (1 row)
+
 ```
 
 - 10. Get count of likes for the post cartoon. user colin
 
 ```
+instaclone=# select COUNT(likes.likeid) AS cartoon_likes from likes where likes.postid = 7;
+ cartoon_likes
+---------------
+             4
+(1 row)
 
 ```
 
 - 11. Get the maximum likes posts.
+
+```
+instaclone=# select postid, count(postid) from likes GROUP BY postid HAVING COUNT(postid)>1 order by count(postid) desc limit 2;
+ postid | count
+--------+-------
+     13 |     4
+      7 |     4
+(2 rows)
+
+```
+
 - 12. In Edina, sort posts by title in forward.
+      post content is ordered by ascending order for the user edina.
+
+```
+instaclone=# select * from posts where userid=1 ORDER BY postcontent;
+ postid | postcontent |  postdate  | userid
+--------+-------------+------------+--------
+      1 | Craft       | 2023-11-08 |      1
+      3 | Design      | 2023-11-08 |      1
+      5 | Lesson      | 2023-11-08 |      1
+      2 | Sale        | 2023-11-08 |      1
+      4 | Tips        | 2023-11-08 |      1
+(5 rows)
+```
+
 - 13. In Paula, sort post by date backward.
+
+```
+instaclone=# select * from posts where userid=4 ORDER BY postdate DESC;
+ postid | postcontent |  postdate  | userid
+--------+-------------+------------+--------
+     16 | Gold        | 2023-11-09 |      4
+     17 | Awarness    | 2023-11-08 |      4
+     19 | LandSale    | 2023-11-08 |      4
+     18 | Experiments | 2023-11-07 |      4
+     20 | Tricks      | 2023-11-06 |      4
+(5 rows)
+
+```
+
 - 14. Filter today posted posts.
+
+```
+instaclone=# select * from posts where postdate= 'today';
+ postid | postcontent |  postdate  | userid
+--------+-------------+------------+--------
+     16 | Gold        | 2023-11-09 |      4
+(1 row)
+
+```
