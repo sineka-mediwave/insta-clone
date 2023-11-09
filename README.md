@@ -16,7 +16,7 @@
 
 ## task
 
-- list all users `SELECT * from users;`
+- 1. list all users `SELECT * from users;`
 
 ```
 instaclone=# SELECT * from users;
@@ -124,3 +124,54 @@ FROM likes where likes.postid = 17 or likes.postid=19;
 (1 row)
 
 ```
+
+- 7. List Posts of Edina which has likes and also not liked posts.
+
+```
+instaclone=# SELECT posts.postcontent as PostOfEdina FROM posts where posts.userid = 1;
+ postofedina
+-------------
+ Craft
+ Sale
+ Design
+ Tips
+ Lesson
+(5 rows)
+```
+
+- 8. Search all users posts with Text "sal"
+
+The LIKE operator is case sensitive, if you want to do a case insensitive search, use the ILIKE operator instead.
+
+```
+instaclone=# SELECT * FROM posts
+WHERE posts.postcontent ILIKE '%sal%';
+ postid | postcontent |  postdate  | userid
+--------+-------------+------------+--------
+      2 | Sale        | 2023-11-08 |      1
+     12 | BikeSale    | 2023-11-08 |      3
+     19 | LandSale    | 2023-11-08 |      4
+(3 rows)
+```
+
+- 9. Get the count of colin posts
+
+```
+instaclone=# SELECT COUNT(posts.postid) FROM posts
+WHERE  posts.userid=2;
+ count
+-------
+     5
+(1 row)
+```
+
+- 10. Get count of likes for the post cartoon. user colin
+
+```
+
+```
+
+- 11. Get the maximum likes posts.
+- 12. In Edina, sort posts by title in forward.
+- 13. In Paula, sort post by date backward.
+- 14. Filter today posted posts.
